@@ -6,7 +6,71 @@ Tested on NGE102B but probably also works on NGE103B
 after installing the package and activating an environment:
 
 ### Use as a python lib
+install the package in your environment
+```bash
+pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.0/rs_power_supply-0.1.0-py3-none-any.whl
+```
+```bash
+from rs_power_supply import NGE100
 
+# VISA resource string of the power supply
+RESOURCE = "USB0::0x0AAD::0x0135::123456::INSTR"
+
+# Use context manager for automatic cleanup
+with NGE100(RESOURCE) as psu:
+
+    # Select channel 1
+    psu.select_channel(1)
+
+    # Configure voltage, current and enable output
+    psu.configure(
+        voltage=12.0,   # Set output voltage to 12V
+        current=1.5,    # Set current limit to 1.5A
+        output=True     # Enable output
+    )
+
+    # Enable fuse protection
+    psu.set_fuse(
+        state=True
+    )
+
+    # Measure voltage
+    voltage = psu.measure_voltage()
+    print("Voltage:", voltage, "V")
+
+    # Measure current
+    current = psu.measure_current()
+    print("Current:", current, "A")
+
+    # Measure all available values
+    values = psu.measure_all()
+
+    print("Measured values:")
+    print("Voltage:", values["voltage"], "V")
+    print("Current:", values["current"], "A")
+    print("Fuse:", values["fuse"])
+
+    # Read fuse status separately
+    fuse_status = psu.get_fuse_status()
+    print("Fuse status:", fuse_status)
+
+    # Check if fuse was triggered
+    tripped = psu.fuse_tripped()
+    print("Fuse tripped:", tripped)
+
+    # Reset fuse if necessary
+    psu.reset_fuse()
+
+    # Disable output again
+    psu.configure(
+        output=False
+    )
+
+    # Disable fuse protection
+    psu.set_fuse(
+        state=False
+    )
+```
 ### Use as a Cli tool
 - create a venv
 ```bash
