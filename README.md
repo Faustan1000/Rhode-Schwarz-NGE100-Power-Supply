@@ -8,7 +8,7 @@ after installing the package and activating an environment:
 ### Use as a python lib
 install the package in your environment
 ```bash
-pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.2/rs_power_supply-0.1.0-py3-none-any.whl
+pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.2/rs_power_supply-0.1.2-py3-none-any.whl
 ```
 example:
 ```bash
@@ -79,7 +79,7 @@ python -m venv .venv
 ```
 - install package 
 ```bash
-pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.2/rs_power_supply-0.1.0-py3-none-any.whl
+pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.2/rs_power_supply-0.1.2-py3-none-any.whl
 ```
 find resources:
 ```bash
@@ -144,7 +144,7 @@ pip install -e .
 ### Option 2 
 - download latest version directly
 ```bash
-pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.2/rs_power_supply-0.1.0-py3-none-any.whl
+pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/releases/download/v0.1.2/rs_power_supply-0.1.2-py3-none-any.whl
 ```
 
 
