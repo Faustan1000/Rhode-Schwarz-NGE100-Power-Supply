@@ -25,7 +25,7 @@ with NGE100(RESOURCE) as psu:
 
     # Configure voltage, current and enable output
     psu.configure(
-        voltage=2.0,   # Set output voltage to 12V
+        voltage=2.0,   # Set output voltage to 2V
         current=1.5,    # Set current limit to 1.5A
         output=True     # Enable output
     )
