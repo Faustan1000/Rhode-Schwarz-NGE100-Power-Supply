@@ -1,4 +1,5 @@
 # Python Package for R&S NGE102B / 103B series Power supply
+##only USB supported !!!
 Tested on NGE102B but probably also works on NGE103B 
 ![](https://assets.rohde-schwarz.com/public/image/products/test-and-measurement/powersupplies/dc-powersupplies/dc-powersupplies-hardware/nge100b//rs-nge100b-powersupply-series-front-low-rohde-schwarz_200_66630_1024_576_1.jpg)
 ## How 2 use
