@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rs-power-supply"
+version = "0.1.0"
+description = "VISA power supply control library and CLI for Rohde & Schwarz NGE100 series power supplies"
+readme = "README.md"
+
+
+authors = [
+  { name = "Faust" }
+]
+
+license = "MIT"
+
+dependencies = [
+  "pyvisa"
+]
+
+keywords = [
+  "visa",
+  "power-supply",
+  "rohde-schwarz",
+  "instrument-control",
+  "scpi"
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+
+[project.scripts]
+NGE100 = "NGE100.cli:main"
