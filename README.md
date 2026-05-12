@@ -12,7 +12,7 @@ pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/rel
 ```
 example:
 ```bash
-from rs_power_supply import NGE100
+from NGE100 import NGE100
 
 # VISA resource string of the power supply
 RESOURCE = "USB0::0x0AAD::0x0135::123456::INSTR"
@@ -25,7 +25,7 @@ with NGE100(RESOURCE) as psu:
 
     # Configure voltage, current and enable output
     psu.configure(
-        voltage=12.0,   # Set output voltage to 12V
+        voltage=2.0,   # Set output voltage to 12V
         current=1.5,    # Set current limit to 1.5A
         output=True     # Enable output
     )
