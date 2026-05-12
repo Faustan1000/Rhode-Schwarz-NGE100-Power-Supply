@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rs-power-supply"
-version = "0.1.0"
+version = "0.1.2"
 description = "VISA power supply control library and CLI for Rohde & Schwarz NGE100 series power supplies"
 readme = "README.md"
 
