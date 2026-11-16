@@ -1,5 +1,20 @@
-import pyvisa
 import logging
+import warnings
+
+import pyvisa
+
+
+def _create_resource_manager(backend=None):
+    """Create a ResourceManager without noisy third-party warnings.
+
+    pyvisa-py emits harmless UserWarnings (e.g. missing GPIB library).
+    They are hidden here; use -W default to see them again.
+    """
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=UserWarning, module=r"gpib_ctypes.*")
+        warnings.filterwarnings("ignore", category=UserWarning, module=r"pyvisa_py.*")
+        return pyvisa.ResourceManager(backend) if backend else pyvisa.ResourceManager()
+
 
 class NGE100:
     def __init__(self, resource_string, backend=None):
@@ -21,8 +36,10 @@ class NGE100:
     def list_resources(backend=None):
         logger = logging.getLogger(__name__)
         try:
-            rm = pyvisa.ResourceManager(backend) if backend else pyvisa.ResourceManager()
-            resources = rm.list_resources()
+            rm = _create_resource_manager(backend)
+            with warnings.catch_warnings():
+                warnings.filterwarnings("ignore", category=UserWarning, module=r"pyvisa_py.*")
+                resources = rm.list_resources()
 
             logger.info("Available VISA resources:")
             if resources:
@@ -32,18 +49,16 @@ class NGE100:
                 logger.info("  No resources found")
 
             rm.close()
+            return True
 
         except Exception as e:
             logger.error(f"Error listing resources: {e}")
+            return False
 
     def connect(self):
         try:
-            if self.backend:
-                self.rm = pyvisa.ResourceManager(self.backend)
-                self.logger.debug(f"Using VISA backend: {self.backend}")
-            else:
-                self.rm = pyvisa.ResourceManager()
-                self.logger.debug("Using default VISA backend")
+            self.rm = _create_resource_manager(self.backend)
+            self.logger.debug(f"Using VISA backend: {self.rm.visalib}")
 
             self.instrument = self.rm.open_resource(self.resource_string)
             self.instrument.write_termination = '\n'

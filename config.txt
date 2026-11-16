@@ -1,0 +1,5 @@
+--resource USB0::0x0AAD::0x0197::5601.3800k02-110427::INSTR
+--channel 1
+--fuse
+--curr 0.4
+--volt 5
