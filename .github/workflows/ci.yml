@@ -32,11 +32,15 @@ jobs:
 
       # No real power supply is available in CI, so only make sure that the
       # CLI starts and the VISA backend can list resources without errors.
+      # A crash gives a non-zero exit code (pipefail), errors reported by the
+      # tool itself start with "ERROR". Harmless warnings of third-party
+      # libraries (e.g. zeroconf on runners with virtual network interfaces)
+      # must not fail the job.
       - name: Run NGE100 --list
         shell: bash
         run: |
           NGE100 --list 2>&1 | tee list_output.txt
-          if grep -E "^ERROR|Traceback" list_output.txt; then
+          if grep -E "^ERROR" list_output.txt; then
             echo "::error::NGE100 --list reported an error"
             exit 1
           fi

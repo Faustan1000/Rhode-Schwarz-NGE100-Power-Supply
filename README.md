@@ -201,7 +201,7 @@ pip install https://github.com/Faustan1000/Rhode-Schwarz-NGE100-Power-Supply/rel
 ## Continuous integration
 
 A GitHub Actions workflow (`.github/workflows/ci.yml`) installs the package on Linux, Windows and macOS and runs `NGE100 --list`.
-It fails on any error or traceback. No real power supply is switched there, the check only makes sure that the package installs and starts.
+It fails if the tool exits with an error code or reports an `ERROR`. No real power supply is switched there, the check only makes sure that the package installs and starts.
 
 ## Linux: USB access
 

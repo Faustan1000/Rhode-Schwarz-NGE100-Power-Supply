@@ -96,6 +96,10 @@ def main():
         level=logging.DEBUG if args.verbose else logging.INFO,
         format="%(levelname)s: %(message)s"
     )
+    if not args.verbose:
+        # zeroconf logs scary tracebacks for unreachable network interfaces
+        # during discovery, which are irrelevant for the user.
+        logging.getLogger("zeroconf").setLevel(logging.ERROR)
 
     if args.list:
         sys.exit(0 if NGE100.list_resources(args.backend) else 1)
